@@ -1,0 +1,39 @@
+{
+  "_comment": "iOS 카카오톡이 읽는 색 키 -> themes/<id>/theme.json 의 팔레트 키. 모든 테마가 공유합니다. 안드로이드의 android/app/src/main/res/values/colors.xml 과 같은 역할입니다.",
+
+  "background": "background",
+  "backgroundElevated": "backgroundElevated",
+  "backgroundSunken": "backgroundSunken",
+
+  "text": "text",
+  "textSecondary": "textSecondary",
+  "textDisabled": "textDisabled",
+  "textOnAccent": "textOnAccent",
+
+  "accent": "accent",
+  "accentPressed": "accentPressed",
+
+  "divider": "divider",
+  "scrim": "scrim",
+
+  "navigationBarBackground": "background",
+  "navigationBarTitle": "text",
+  "tabBarBackground": "background",
+  "tabBarItemNormal": "textSecondary",
+  "tabBarItemSelected": "text",
+
+  "chatRoomBackground": "backgroundSunken",
+  "bubbleMeBackground": "bubbleMe",
+  "bubbleMeText": "bubbleMeText",
+  "bubbleYouBackground": "bubbleYou",
+  "bubbleYouText": "bubbleYouText",
+  "chatTimeText": "textDisabled",
+  "chatUnreadCountText": "accentPressed",
+
+  "inputBarBackground": "background",
+  "inputText": "text",
+  "inputPlaceholder": "textDisabled",
+
+  "badgeBackground": "badge",
+  "badgeText": "badgeText"
+}

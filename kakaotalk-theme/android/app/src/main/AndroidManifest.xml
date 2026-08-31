@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 리소스 전용 테마 APK: 실행 가능한 코드도, 권한도 없다. -->
+    <application
+        android:allowBackup="false"
+        android:hasCode="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="${themeName}">
+
+        <!-- 카카오톡이 설치된 테마를 스캔할 때 읽는 값들 -->
+        <meta-data
+            android:name="com.kakao.talk.theme.name"
+            android:value="${themeName}" />
+        <meta-data
+            android:name="com.kakao.talk.theme.author"
+            android:value="${themeAuthor}" />
+        <meta-data
+            android:name="com.kakao.talk.theme.version"
+            android:value="@string/thm_theme_spec_version" />
+    </application>
+
+</manifest>

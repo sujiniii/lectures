@@ -1,0 +1,9 @@
+{
+  "_comment": "iOS 테마가 참조하는 이미지 슬롯 -> themes/<id>/ios/images/ 안의 파일명. 파일이 없으면 빌드 시 해당 슬롯이 빠지고 카카오톡 기본 이미지가 쓰입니다.",
+
+  "mainBackground": "main_bg@3x.png",
+  "chatRoomBackground": "chatroom_bg@3x.png",
+  "bubbleMe": "bubble_me@3x.png",
+  "bubbleYou": "bubble_you@3x.png",
+  "preview": "preview@3x.png"
+}

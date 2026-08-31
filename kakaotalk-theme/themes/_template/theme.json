@@ -1,0 +1,38 @@
+{
+  "name": "테마 이름",
+  "author": "sujiniii",
+  "version": "1.0.0",
+  "versionCode": 1,
+
+  "colors": {
+    "background": "#FFFFFF",
+    "backgroundElevated": "#F7F8FA",
+    "backgroundSunken": "#EDEFF2",
+
+    "text": "#16181D",
+    "textSecondary": "#6B7280",
+    "textDisabled": "#AAB0BA",
+    "textOnAccent": "#16181D",
+
+    "accent": "#FAE100",
+    "accentPressed": "#E6CF00",
+
+    "divider": "#1A000000",
+    "scrim": "#66000000",
+
+    "bubbleMe": "#FAE100",
+    "bubbleMeText": "#16181D",
+    "bubbleYou": "#FFFFFF",
+    "bubbleYouText": "#16181D",
+
+    "badge": "#FF3B30",
+    "badgeText": "#FFFFFF",
+
+    "transparent": "#00000000"
+  },
+
+  "bubbleInsets": {
+    "me":  { "top": 12, "left": 20, "bottom": 12, "right": 12 },
+    "you": { "top": 12, "left": 12, "bottom": 12, "right": 20 }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "name": "모노 다크",
+  "author": "sujiniii",
+  "version": "1.0.0",
+  "versionCode": 1,
+  "colors": {
+    "background": "#12141A",
+    "backgroundElevated": "#1B1E26",
+    "backgroundSunken": "#0C0E12",
+    "text": "#ECEFF4",
+    "textSecondary": "#9AA3B2",
+    "textDisabled": "#5C6472",
+    "textOnAccent": "#12141A",
+    "accent": "#7DD3FC",
+    "accentPressed": "#38BDF8",
+    "divider": "#1AFFFFFF",
+    "scrim": "#66000000",
+    "bubbleMe": "#7DD3FC",
+    "bubbleMeText": "#12141A",
+    "bubbleYou": "#1B1E26",
+    "bubbleYouText": "#ECEFF4",
+    "badge": "#FF3B30",
+    "badgeText": "#FFFFFF",
+    "transparent": "#00000000"
+  },
+  "bubbleInsets": {
+    "me": {
+      "top": 12,
+      "left": 20,
+      "bottom": 12,
+      "right": 12
+    },
+    "you": {
+      "top": 12,
+      "left": 12,
+      "bottom": 12,
+      "right": 20
+    }
+  }
+}
