@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 카카오톡 테마 규격 버전. 최신 규격에 맞춰 올린다. -->
+    <string name="thm_theme_spec_version">10</string>
+</resources>

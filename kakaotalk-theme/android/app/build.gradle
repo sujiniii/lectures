@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.application'
+}
+
+// 카카오톡은 패키지명이 com.kakao.talk.theme.* 인 앱을 테마로 인식한다.
+def themeId = project.findProperty('themeId') ?: 'mytheme'
+
+android {
+    namespace "com.kakao.talk.theme.${themeId}"
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.kakao.talk.theme.${themeId}"
+        minSdk 21
+        targetSdk 35
+        versionCode (project.findProperty('themeVersionCode') ?: '1') as Integer
+        versionName project.findProperty('themeVersionName') ?: '1.0.0'
+
+        // 리소스 전용 APK. 코드가 없으므로 테스트 러너도 필요 없다.
+        manifestPlaceholders = [
+                themeName  : project.findProperty('themeName') ?: 'My KakaoTalk Theme',
+                themeAuthor: project.findProperty('themeAuthor') ?: '',
+        ]
+    }
+
+    buildTypes {
+        release {
+            // 리소스 전용이라 축소하면 thm_* 가 통째로 날아간다. 반드시 false.
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug   // 배포 시 release 키로 교체
+        }
+    }
+
+    // 테마 리소스는 이름으로 조회되므로 어떤 것도 제거되면 안 된다.
+    androidResources {
+        noCompress += ['png', 'webp']
+    }
+
+    lint {
+        // 코드가 없는 리소스 전용 모듈이라 대부분의 검사가 무의미하다.
+        abortOnError false
+    }
+}
