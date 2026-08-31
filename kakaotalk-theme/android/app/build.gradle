@@ -1,26 +1,72 @@
+import groovy.json.JsonSlurper
+
 plugins {
     id 'com.android.application'
 }
 
-// 카카오톡은 패키지명이 com.kakao.talk.theme.* 인 앱을 테마로 인식한다.
-def themeId = project.findProperty('themeId') ?: 'mytheme'
+// ---------------------------------------------------------------------------
+// themes/ 를 스캔해서 테마마다 product flavor 를 하나씩 만든다.
+// 테마 추가 = 폴더 추가. 이 파일은 손댈 일이 없다.
+// ---------------------------------------------------------------------------
+def themesDir = file("$rootDir/../themes")
+
+def themes = (themesDir.listFiles() ?: [] as File[])
+        .findAll { it.isDirectory() && !it.name.startsWith('_') && new File(it, 'theme.json').exists() }
+        .sort { it.name }
+        .collectEntries { dir -> [(dir.name): new JsonSlurper().parse(new File(dir, 'theme.json'))] }
+
+if (themes.isEmpty()) {
+    throw new GradleException(
+            "themes/ 에 빌드할 테마가 없습니다. tools/new_theme.sh <테마-id> 로 만드세요.")
+}
+
+// backgroundElevated -> background_elevated
+static String toResName(String camel) {
+    camel.replaceAll(/([a-z0-9])([A-Z])/, '$1_$2').toLowerCase()
+}
 
 android {
-    namespace "com.kakao.talk.theme.${themeId}"
+    // flavor 마다 applicationId 는 달라지지만 namespace 는 하나여야 한다.
+    // hasCode=false 라 R 클래스를 읽는 코드가 없으므로 이 값은 형식상의 것.
+    namespace 'com.kakao.talk.theme.base'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.kakao.talk.theme.${themeId}"
         minSdk 21
         targetSdk 35
-        versionCode (project.findProperty('themeVersionCode') ?: '1') as Integer
-        versionName project.findProperty('themeVersionName') ?: '1.0.0'
+    }
 
-        // 리소스 전용 APK. 코드가 없으므로 테스트 러너도 필요 없다.
-        manifestPlaceholders = [
-                themeName  : project.findProperty('themeName') ?: 'My KakaoTalk Theme',
-                themeAuthor: project.findProperty('themeAuthor') ?: '',
-        ]
+    flavorDimensions += 'theme'
+
+    productFlavors {
+        themes.each { themeId, cfg ->
+            create(themeId) {
+                dimension 'theme'
+                // 카카오톡은 패키지명이 com.kakao.talk.theme.* 인 앱을 테마로 인식한다.
+                applicationId "com.kakao.talk.theme.${themeId}"
+                versionCode (cfg.versionCode ?: 1) as Integer
+                versionName cfg.version ?: '1.0.0'
+                manifestPlaceholders = [
+                        themeName  : cfg.name ?: themeId,
+                        themeAuthor: cfg.author ?: '',
+                ]
+                // theme.json 의 팔레트를 @color/palette_* 로 생성한다.
+                // 공용 colors.xml 의 thm_* 가 이 이름들을 참조한다.
+                cfg.colors.each { key, value ->
+                    resValue 'color', "palette_${toResName(key)}", value
+                }
+            }
+        }
+    }
+
+    sourceSets {
+        themes.each { themeId, cfg ->
+            maybeCreate(themeId)
+            getByName(themeId) {
+                // 테마 이미지는 themes/<id>/android/ 아래 drawable-* 폴더에 그대로 둔다.
+                res.srcDirs = ["$themesDir/$themeId/android"]
+            }
+        }
     }
 
     buildTypes {
@@ -32,7 +78,6 @@ android {
         }
     }
 
-    // 테마 리소스는 이름으로 조회되므로 어떤 것도 제거되면 안 된다.
     androidResources {
         noCompress += ['png', 'webp']
     }
@@ -40,5 +85,17 @@ android {
     lint {
         // 코드가 없는 리소스 전용 모듈이라 대부분의 검사가 무의미하다.
         abortOnError false
+    }
+}
+
+// 어떤 테마가 잡혔는지 확인용: ./gradlew listThemes
+tasks.register('listThemes') {
+    group = 'kakaotalk theme'
+    description = 'themes/ 에서 인식된 테마 목록을 출력한다'
+    doLast {
+        println "인식된 테마 ${themes.size()}개:"
+        themes.each { themeId, cfg ->
+            println "  ${themeId.padRight(16)} ${cfg.name} v${cfg.version}  (com.kakao.talk.theme.${themeId})"
+        }
     }
 }

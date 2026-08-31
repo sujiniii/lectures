@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   카카오톡이 이름으로 찾아 쓰는 색 리소스. 이름은 반드시 thm_ 로 시작한다.
-  값은 직접 쓰지 말고 palette.xml 을 참조할 것 (톤 교체를 한 곳에서 하기 위해).
+
+  이 파일은 **모든 테마가 공유**한다. 값은 직접 쓰지 말고 @color/palette_* 를
+  참조할 것. palette_* 는 각 테마의 themes/<id>/theme.json 에서 빌드 시
+  자동 생성된다 (app/build.gradle 의 resValue).
+  즉 화면 -> 팔레트 매핑은 여기 한 번, 실제 색은 테마마다.
 
   ※ 아래 목록은 자주 쓰이는 항목을 화면별로 묶어둔 것이다.
     카카오톡 버전이 올라가면 항목이 추가/변경되므로, 공식 테마 제작 가이드의
@@ -11,36 +15,36 @@
 <resources>
 
     <!-- ================= 공통 ================= -->
-    <color name="thm_general_default_background">@color/palette_bg</color>
+    <color name="thm_general_default_background">@color/palette_background</color>
     <color name="thm_general_default_text">@color/palette_text</color>
     <color name="thm_general_default_subtext">@color/palette_text_secondary</color>
     <color name="thm_general_default_disabled_text">@color/palette_text_disabled</color>
     <color name="thm_general_default_divider">@color/palette_divider</color>
     <color name="thm_general_default_dimmed">@color/palette_scrim</color>
-    <color name="thm_general_list_item_background">@color/palette_bg</color>
-    <color name="thm_general_list_item_pressed">@color/palette_bg_sunken</color>
+    <color name="thm_general_list_item_background">@color/palette_background</color>
+    <color name="thm_general_list_item_pressed">@color/palette_background_sunken</color>
 
     <!-- ================= 상단 바 / 탭 ================= -->
-    <color name="thm_actionbar_background">@color/palette_bg</color>
+    <color name="thm_actionbar_background">@color/palette_background</color>
     <color name="thm_actionbar_title_text">@color/palette_text</color>
     <color name="thm_actionbar_icon">@color/palette_text</color>
-    <color name="thm_statusbar_background">@color/palette_bg</color>
+    <color name="thm_statusbar_background">@color/palette_background</color>
 
-    <color name="thm_main_tab_background">@color/palette_bg</color>
+    <color name="thm_main_tab_background">@color/palette_background</color>
     <color name="thm_main_tab_icon_normal">@color/palette_text_secondary</color>
     <color name="thm_main_tab_icon_selected">@color/palette_text</color>
     <color name="thm_main_tab_badge_background">@color/palette_badge</color>
     <color name="thm_main_tab_badge_text">@color/palette_badge_text</color>
 
     <!-- ================= 친구 목록 ================= -->
-    <color name="thm_friends_list_background">@color/palette_bg</color>
+    <color name="thm_friends_list_background">@color/palette_background</color>
     <color name="thm_friends_list_name_text">@color/palette_text</color>
     <color name="thm_friends_list_message_text">@color/palette_text_secondary</color>
-    <color name="thm_friends_list_section_background">@color/palette_bg_elevated</color>
+    <color name="thm_friends_list_section_background">@color/palette_background_elevated</color>
     <color name="thm_friends_list_section_text">@color/palette_text_secondary</color>
 
     <!-- ================= 채팅방 목록 ================= -->
-    <color name="thm_chatroom_list_background">@color/palette_bg</color>
+    <color name="thm_chatroom_list_background">@color/palette_background</color>
     <color name="thm_chatroom_list_title_text">@color/palette_text</color>
     <color name="thm_chatroom_list_message_text">@color/palette_text_secondary</color>
     <color name="thm_chatroom_list_date_text">@color/palette_text_disabled</color>
@@ -48,7 +52,7 @@
     <color name="thm_chatroom_list_badge_text">@color/palette_badge_text</color>
 
     <!-- ================= 대화방 ================= -->
-    <color name="thm_chatroom_background">@color/palette_bg_sunken</color>
+    <color name="thm_chatroom_background">@color/palette_background_sunken</color>
     <color name="thm_chatroom_bubble_me_background">@color/palette_bubble_me</color>
     <color name="thm_chatroom_bubble_me_text">@color/palette_bubble_me_text</color>
     <color name="thm_chatroom_bubble_you_background">@color/palette_bubble_you</color>
@@ -61,26 +65,26 @@
     <color name="thm_chatroom_date_divider_background">@color/palette_divider</color>
 
     <!-- 입력창 -->
-    <color name="thm_chatroom_edit_background">@color/palette_bg</color>
+    <color name="thm_chatroom_edit_background">@color/palette_background</color>
     <color name="thm_chatroom_edit_text">@color/palette_text</color>
     <color name="thm_chatroom_edit_hint_text">@color/palette_text_disabled</color>
     <color name="thm_chatroom_send_button_background">@color/palette_accent</color>
     <color name="thm_chatroom_send_button_text">@color/palette_text_on_accent</color>
 
     <!-- ================= 더보기 / 설정 ================= -->
-    <color name="thm_more_background">@color/palette_bg</color>
+    <color name="thm_more_background">@color/palette_background</color>
     <color name="thm_more_profile_name_text">@color/palette_text</color>
     <color name="thm_more_menu_text">@color/palette_text</color>
-    <color name="thm_setting_background">@color/palette_bg</color>
+    <color name="thm_setting_background">@color/palette_background</color>
     <color name="thm_setting_title_text">@color/palette_text</color>
     <color name="thm_setting_summary_text">@color/palette_text_secondary</color>
 
     <!-- ================= 버튼 / 다이얼로그 ================= -->
     <color name="thm_button_primary_background">@color/palette_accent</color>
     <color name="thm_button_primary_text">@color/palette_text_on_accent</color>
-    <color name="thm_button_secondary_background">@color/palette_bg_elevated</color>
+    <color name="thm_button_secondary_background">@color/palette_background_elevated</color>
     <color name="thm_button_secondary_text">@color/palette_text</color>
-    <color name="thm_dialog_background">@color/palette_bg</color>
+    <color name="thm_dialog_background">@color/palette_background</color>
     <color name="thm_dialog_title_text">@color/palette_text</color>
     <color name="thm_dialog_message_text">@color/palette_text_secondary</color>
 
